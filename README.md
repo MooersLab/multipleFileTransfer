@@ -1,3 +1,7 @@
+![version](https://img.shields.io/static/v1?label=multipleFileTranser&message=0.1&color=brightcolor)
+[![license: mit](https://img.shields.io/badge/license-mit-blue.svg)](https://opensource.org/licenses/mit)
+
+
 # Transfer multiple files by scp without repeated manual password entry
 
 *Problem:* the transfer of mulitple tar files from a remote computer can be laborious. 
