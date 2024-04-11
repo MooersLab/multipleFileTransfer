@@ -13,4 +13,4 @@ done
 echo "All of your files have been transferred."
 afplay ~/canary.wav
 # on Mac OS:
-say "All of your files have been transferred."
+say 'All of your files have been transferred.'
