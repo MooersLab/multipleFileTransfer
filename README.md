@@ -21,7 +21,7 @@ I used the canary.wav file but any wav file you find on the web should work.
 - The list is whitespace-separated.
 - The length of the list depends on the speed of your network, the connection's stability, and the files' size.
 - Generally, transferring 100 GB of tar files takes about an hour.
-- Make executable: chmod a+x mcopy.sh.
+- Make executable: `chmod a+x mcopy.sh`
 - Enter `./mcopy.sh` in the destination folder.
 
 ## Update History
