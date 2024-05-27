@@ -8,7 +8,7 @@
 This script eases this task.
 
 The bash script `mcopy.sh` above does not require the repeated entry of your password after each file is transferred.
-It uses the Unix program sshpass to pass your password to the program scp.
+It uses the Unix program sshpass to pass your password to the program *scp*.
 The script does the file transfers sequentially. 
 
 The script loops over a list of files.
@@ -16,11 +16,11 @@ The script reports to the terminal when a file transfer has started and when it 
 Edit to use any WAV file to report an audible alert when the transfers are finished.
 I used the canary.wav file but any wav file you find on the web should work.
 
-- Replace PASSWORD with your password. Keep the double quotes around your password.
+- Replace the word PASSWORD with your password. Keep the double quotes around your password.
 - Enter a list of tar files to transfer on the line starting with `for`. 
 - The list is whitespace-separated.
-- The length of the list depends on the speed of your network, the connection's stability, and the files' size.
-- Generally, transferring 100 GB of tar files takes about an hour.
+- The length of the list depends on the speed of your network, the connection's stability, and the files' size. Keep the list modest to allow for connection interruptions.
+- Transferring 100 GB of tar files takes about an hour.
 - Make executable: `chmod a+x mcopy.sh`
 - Enter `./mcopy.sh` in the destination folder.
 
