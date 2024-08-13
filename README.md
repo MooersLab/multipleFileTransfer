@@ -11,7 +11,7 @@ Two solutions are offered. Solution 1 requires making an authentication key and 
 
 
 
-*Solution 1:*
+## Solution 1:
 
 1. Generate an authentication key. I recommend using a short passphrase when prompted for one.
 ```bash
@@ -31,7 +31,7 @@ echo "Your tar file has been secure copied to OUR disk."|espeak"
 ```
 
 
-*Solution 2:*
+## Solution 2:
 The bash script `mcopy.sh` above does not require the repeated entry of your password after each file is transferred.
 It uses the Unix program *sshpass* to pass your password to the program *scp*.
 The script does the file transfers sequentially. 
@@ -39,7 +39,7 @@ The script does the file transfers sequentially.
 The script loops over a list of files.
 The script reports to the terminal when a file transfer has started and when it has been completed.
 Edit to use any WAV file to report an audible alert when the transfers are finished.
-I used the canary.wav file, but any wav file you find on the web should work.
+I used the canary.wav file, but any `*.wav` file you find on the web should work.
 
 - Replace the word PASSWORD with your password. Keep the double quotes around your password.
 - Enter a list of tar files to transfer on the line starting with `for`. 
@@ -54,7 +54,7 @@ I used the canary.wav file, but any wav file you find on the web should work.
 |Version      | Changes                                         | Date            |
 |:-----------:|:-----------------------------------------------:|:---------------:|
 | Version 0.3 |  Fixed typos in README.md                       | 2024 April 10   |
-
+| Version 0.4 |  Added Solution 1.                              | 2024 August 13  |
 
 ## Sources of funding
 
