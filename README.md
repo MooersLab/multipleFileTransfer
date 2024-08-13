@@ -17,17 +17,17 @@ Two solutions are offered. Solution 1 requires making an authentication key and 
 ```bash
 ssh-keygen -t rsa -b 4096
 ```
-2. Copy the authenticatin key to the remote server(s).
+2. Copy the authentication key to the remote server(s).
 ```bash
 ssh-copy-id bmooers@schooner2.oscer.ou.edu:/home/bmooers
 ```
-3. You will be promptsx for the pass phrase the next time you use ssh to login or scp to transfer files. The prompt with scp will occur just once instead of the number of times that correspond to the number of files in the list:
+3. You will be prompted for the pass phrase the next time you use ssh to login or scp to transfer files. The prompt with scp will occur just once instead of the number of times that correspond to the number of files in the list:
 ```bash
 scp {3063XDS,3050b,3050bXDS,3032,2737,2728}.tar bmooers@dtn2.oscer.ou.edu:/ourdisk/hpc/bmooers/bmooers/dont_archive;say 'Your tar file has been secure copied to OUR disk.'
 ```
-4. *say* is a macOS text-to-speak program. The analog on Linux is *espeak*. Use espeak as follows:
+4. *say* is a macOS text-to-speak program. The analog on Linux is *espeak*. Use *espeak* as follows:
 ```bash
-echo "Your tar file has been secure copied to OUR disk."|espeak"
+echo "Your tar files have been secure copied to OUR disk."|espeak
 ```
 
 
