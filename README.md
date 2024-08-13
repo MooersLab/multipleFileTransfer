@@ -1,10 +1,10 @@
-![version](https://img.shields.io/static/v1?label=multipleFileTranser&message=0.2&color=brightcolor)
+![version](https://img.shields.io/static/v1?label=multipleFileTranser&message=0.4&color=brightcolor)
 [![license: mit](https://img.shields.io/badge/license-mit-blue.svg)](https://opensource.org/licenses/mit)
 
 
 # Transfer multiple files by scp without repeated manual password entry
 
-*Problem:* transferring multiple tar files from a remote computer can be laborious because you are asked to enter you password after each file transfer. 
+*Problem:* transferring multiple tar files from a remote computer can be laborious because you are asked to enter your password after each file transfer. 
 
 
 Two solutions are offered. Solution 1 requires making an authentication key and is more secure than Solution 2, which uses the program *sshpass*.
