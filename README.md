@@ -1,19 +1,13 @@
-![version](https://img.shields.io/static/v1?label=multipleFileTranser&message=0.4&color=brightcolor)
+![version](https://img.shields.io/static/v1?label=multipleFileTranser&message=0.5&color=brightcolor)
 [![license: mit](https://img.shields.io/badge/license-mit-blue.svg)](https://opensource.org/licenses/mit)
-
 
 # Transfer multiple files by scp without repeated manual password entry
 
 *Problem:* transferring multiple tar files from a remote computer can be laborious because you are asked to enter your password after each file transfer. 
 
+This solution requires making an authentication key, which uses the program *sshpass*.
 
-Two solutions are offered. Solution 1 requires making an authentication key and is more secure than Solution 2, which uses the program *sshpass*.
-
-
-
-## Solution 1:
-
-1. Generate an authentication key. I recommend using a short passphrase when prompted for one.
+1. Generate an authentication key. You should use a short passphrase when prompted for one.
 ```bash
 ssh-keygen -t rsa -b 4096
 ```
@@ -21,33 +15,69 @@ ssh-keygen -t rsa -b 4096
 ```bash
 ssh-copy-id bmooers@schooner2.oscer.ou.edu:/home/bmooers
 ```
-3. You will be prompted for the pass phrase the next time you use ssh to login or scp to transfer files. The prompt with scp will occur just once instead of the number of times that correspond to the number of files in the list:
+3. You will be prompted for the passphrase the next time you use `ssh` to log in or `scp` to transfer files. The prompt with scp will occur just once instead of the number of times corresponding to the list's files.
+
+
+The above steps are done only once. 
+The steps below must be done at the start of a session of multiple file transfers. 
+You will have to enter your passphrase only once. 
+Due to ethernet instability, you may have to limit the amount of tar files transferred at a time to a quarter TB.
+
+4. Enter: `eval "$(ssh-agent -s)"`
+5. Enter: `ssh-add ~/.ssh/id_rsa`
+
+
+Store the following two functions in your `.zshrc` or `.bashrc`.
+This first function is for putting a file onto the OURdisk.
+
 ```bash
-scp {3063XDS,3050b,3050bXDS,3032,2737,2728}.tar bmooers@dtn2.oscer.ou.edu:/ourdisk/hpc/bmooers/bmooers/dont_archive;say 'Your tar file has been secure copied to OUR disk.'
+function dtn2mput {
+print "Enter the next two lines once for a day of transfers, then you can run this script multiple times with different batches of files."
+printf 'eval "$(ssh-agent -s)"'
+printf 'ssh-add ~/.ssh/id_rsa'
+if [ $# -lt 1 ]; then
+ echo 1>&2 "$0: not enough arguments. Need one filename or a list of two or more separated by whitespaces."
+ echo "Usage1: smbmget fileName1 fileName2"
+ echo "Note the dropped leading forward slash"
+ return 2
+fi
+destination="/ourdisk/hpc/bmooers/bmooers/dont_archive"
+  for file in "$@"; do
+    echo "Put '$file' to dtn2."
+    scp -i ~/.ssh/id_rsa -pr "$file" bmooers@dtn2.oscer.ou.edu:"$destination"/.
+  done
+echo "All done."  
+echo "Function stored in ~/.bashFunctions3."
+# Call the function with the list of files "$@" to be transferred to OURdisk computer.  
+}
 ```
-4. *say* is a macOS text-to-speak program. The analog on Linux is *espeak*. Use *espeak* as follows:
+
+This second function is for getting a file from OURdisk.
+
 ```bash
-echo "Your tar files have been secure copied to OUR disk."|espeak
+function dtn2mget {
+printf "Enter the next two lines once for a day of transfers, then you can run this script mutliple times with different batches of files."
+printf 'eval "$(ssh-agent -s)"'
+printf 'ssh-add ~/.ssh/id_rsa'
+if [ $# -lt 1 ]; then
+ echo 1>&2 "$0: not enough arguments. Need one filename or a list of two or more separated by whitespaces."
+ echo "Usage1: dtn2mget fileName1 fileName2"
+ return 2
+fi
+source="/data/bmooers"
+  for file in "$@"; do
+    echo "Fetch '$file' from dtn2."
+    scp -i ~/.ssh/id_rsa -pr mooers@smbcopy.slac.stanford.edu:"$source"/"$file" .
+  done
+echo "All done."  
+echo "Function stored in ~/.bashFunctions3."
+# Call the function with the list of files "$@" to be transferred from OURdisk computer.  
+}
 ```
 
+6. Enter `dtn2mput file1.tar file2.tar file3.tar file4.tar` and so on. Note the use of whitespaces to separate the files.
 
-## Solution 2:
-The bash script `mcopy.sh` above does not require the repeated entry of your password after each file is transferred.
-It uses the Unix program *sshpass* to pass your password to the program *scp*.
-The script does the file transfers sequentially. 
 
-The script loops over a list of files.
-The script reports to the terminal when a file transfer has started and when it has been completed.
-Edit to use any WAV file to report an audible alert when the transfers are finished.
-I used the canary.wav file, but any `*.wav` file you find on the web should work.
-
-- Replace the word PASSWORD with your password. Keep the double quotes around your password.
-- Enter a list of tar files to transfer on the line starting with `for`. 
-- The list is whitespace-separated.
-- The length of the list depends on the speed of your network, the connection's stability, and the files' size. Keep the list modest to allow for connection interruptions.
-- Transferring 100 GB of tar files takes about an hour.
-- Make executable: `chmod a+x mcopy.sh`
-- Enter `./mcopy.sh` in the destination folder.
 
 ## Update History
 
@@ -55,6 +85,7 @@ I used the canary.wav file, but any `*.wav` file you find on the web should work
 |:-----------:|:-----------------------------------------------:|:---------------:|
 | Version 0.3 |  Fixed typos in README.md                       | 2024 April 10   |
 | Version 0.4 |  Added Solution 1.                              | 2024 August 13  |
+| Version 0.5 |  Revised dramatically.                          | 2025 January 12 |
 
 ## Sources of funding
 
