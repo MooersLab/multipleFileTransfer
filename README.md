@@ -5,7 +5,7 @@
 
 *Problem:* transferring multiple tar files from a remote computer can be laborious because you are asked to enter your password after each file transfer. 
 
-This solution requires making an authentication key, which uses the program *sshpass*.
+This solution requires making an authentication key using the program *sshpass*.
 
 1. Generate an authentication key. You should use a short passphrase when prompted for one.
 ```bash
@@ -28,7 +28,7 @@ Due to ethernet instability, you may have to limit the amount of tar files trans
 
 
 Store the following two functions in your `.zshrc` or `.bashrc`.
-This first function is for putting a file onto the OURdisk.
+This first function is for putting file(s) onto the OURdisk.
 
 ```bash
 function dtn2mput {
@@ -52,7 +52,7 @@ echo "Function stored in ~/.bashFunctions3."
 }
 ```
 
-This second function is for getting a file from OURdisk.
+This second function is for getting file9(s) from OURdisk.
 
 ```bash
 function dtn2mget {
