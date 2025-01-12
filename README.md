@@ -5,7 +5,7 @@
 
 *Problem:* transferring multiple tar files from a remote computer can be laborious because you are asked to enter your password after each file transfer. 
 
-This solution requires making an authentication key using the program *sshpass*.
+This solution requires making an authentication key using the program *sshpass*. You have to have ssh installed to use this solution.
 
 1. Generate an authentication key. You should use a short passphrase when prompted for one.
 ```bash
@@ -21,13 +21,13 @@ ssh-copy-id bmooers@schooner2.oscer.ou.edu:/home/bmooers
 The above steps are done only once. 
 The steps below must be done at the start of a session of multiple file transfers. 
 You will have to enter your passphrase only once. 
-Due to ethernet instability, you may have to limit the amount of tar files transferred at a time to a quarter TB.
+Due to ethernet instability, you may have to limit the amount of tar files transferred to a quarter TB.
 
 4. Enter: `eval "$(ssh-agent -s)"`
 5. Enter: `ssh-add ~/.ssh/id_rsa`
 
 
-Store the following two functions in your `.zshrc` or `.bashrc`.
+Store the following two functions in your `.zshrc` or `.bashrc` or store in a .bashFunctions file and source from your `.zshrc` or `.bashrc` file.
 This first function is for putting file(s) onto the OURdisk.
 
 ```bash
@@ -52,6 +52,8 @@ echo "Function stored in ~/.bashFunctions3."
 }
 ```
 
+6. Enter `dtn2mput file1.tar file2.tar file3.tar file4.tar` and so on. Note the use of whitespaces to separate the files.
+
 This second function is for getting file9(s) from OURdisk.
 
 ```bash
@@ -75,7 +77,6 @@ echo "Function stored in ~/.bashFunctions3."
 }
 ```
 
-6. Enter `dtn2mput file1.tar file2.tar file3.tar file4.tar` and so on. Note the use of whitespaces to separate the files.
 
 
 
