@@ -1,4 +1,4 @@
-![version](https://img.shields.io/static/v1?label=multipleFileTranser&message=0.5&color=brightcolor)
+![version](https://img.shields.io/static/v1?label=multipleFileTranser&message=0.6&color=brightcolor)
 [![license: mit](https://img.shields.io/badge/license-mit-blue.svg)](https://opensource.org/licenses/mit)
 
 # Transfer multiple files by scp without repeated manual password entry
@@ -90,6 +90,8 @@ Fortunately, the tmux session will continue despite your premature disconnection
 | Version 0.3 |  Fixed typos in README.md                       | 2024 April 10   |
 | Version 0.4 |  Added Solution 1.                              | 2024 August 13  |
 | Version 0.5 |  Revised dramatically.                          | 2025 January 12 |
+| Version 0.6 |  Note about using tmux.                         | 2025 Augues 13 |
+
 
 ## Sources of funding
 
