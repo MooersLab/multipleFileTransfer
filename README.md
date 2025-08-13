@@ -3,7 +3,7 @@
 
 # Transfer multiple files by scp without repeated manual password entry
 
-*Problem:* transferring multiple tar files from a remote computer can be laborious because you are asked to enter your password after each file transfer. 
+*Problem:* Transferring multiple tar files from a remote computer can be laborious because you are asked to enter your password after each file transfer. 
 
 This solution requires making an authentication key using the program *sshpass*. You have to have ssh installed to use this solution.
 
@@ -77,7 +77,10 @@ echo "Function stored in ~/.bashFunctions3."
 }
 ```
 
+## Long Duration Transfers of Large Files
 
+Start a tmux session and launch the dtn2mput function with a list of tar files.
+Fortunately, the tmux session will continue despite your premature disconnections from the server.
 
 
 ## Update History
